@@ -1,3 +1,6 @@
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
 .example-container {
   width: 50%;
   max-width: 100%;

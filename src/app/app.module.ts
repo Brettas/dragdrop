@@ -7,10 +7,12 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AppComponent } from './app.component';
+import { DatatableDragdropComponent } from './datatable-dragdrop/datatable-dragdrop.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DatatableDragdropComponent,
   ],
   imports: [
     BrowserModule,

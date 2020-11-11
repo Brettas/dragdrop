@@ -35,7 +35,11 @@ export class AppComponent {
   drop(event: CdkDragDrop<{name: string, gender: string, company:string}[]>) {
     if (event.previousContainer === event.container) {
       console.log('No mesmo bloco',moveItemInArray);
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(event.container.data,
+                       event.previousIndex, 
+                       event.currentIndex);
+                       this.rows = [...this.rows]
+                       this.rows1 = [...this.rows1]
     } else {
       
       transferArrayItem(event.previousContainer.data,
