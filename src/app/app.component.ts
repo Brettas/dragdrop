@@ -12,43 +12,45 @@ export class AppComponent {
   reorderable = true;
   swapColumns = false;
 
-  rows = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+  dadosTabela = [
+    { name: 'Austin', gender: 'Male', company: 'Swimlane', },
     { name: 'Dany', gender: 'Male', company: 'KFC' },
-    { name: 'Molly', gender: 'Female', company: 'Burger King' }
+    { name: 'Molly', gender: 'Female', company: 'Burger King', }
   ];
-  columns = [{ prop: 'name' }, { name: 'Gender' }, { name: 'Company' }];
-
-  
-  rows1 = [
-    { name: 'Alvaro', gender: 'Male', company: 'Bndes' },
-    { name: 'Roberto', gender: 'Male', company: 'BB' },
-    { name: 'Carlos', gender: 'Male', company: 'Caixa' },
-    
-  ];
-  columns1 = [{ prop: 'name' }, { name: 'Gender' }, { name: 'Company' }];
+  columns = [{ name: 'Name' }, { name: 'Gender' }, { name: 'Company' }];
 
 
+  skillsColumns = [{ name: 'Skill' }];
 
-  
+  skills = [
+  { skills: 'Python' },
+  { skills: 'JS' },
+  { skills: 'TS' },
+  ]
 
-  drop(event: CdkDragDrop<{name: string, gender: string, company:string}[]>) {
+
+
+
+
+
+
+  drop(event: CdkDragDrop<{ name: string, gender: string, company: string, id: string }[]>) {
     if (event.previousContainer === event.container) {
-      console.log('No mesmo bloco',moveItemInArray);
+      console.log('No mesmo bloco', moveItemInArray);
       moveItemInArray(event.container.data,
-                       event.previousIndex, 
-                       event.currentIndex);
-                       this.rows = [...this.rows]
-                       this.rows1 = [...this.rows1]
+        event.previousIndex,
+        event.currentIndex);
+      this.dadosTabela = [...this.dadosTabela]
+      this.columns = [...this.columns]
     } else {
-      
+
       transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
-                        this.rows = [...this.rows]
-                        this.rows1 = [...this.rows1]
-                        console.log('Em bloco diferente', transferArrayItem);
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+      this.dadosTabela = [...this.dadosTabela]
+      this.columns = [...this.columns]
+      console.log('Em bloco diferente', transferArrayItem);
 
     }
   }

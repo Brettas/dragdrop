@@ -1,61 +1,41 @@
-<body id="dragdrop">
-  <div id="drag" cdkDropListGroup>
-    <div class="example-boundary">
-      <div class="example-box1 " cdkDragBoundary=".example-boundary" cdkDragLockAxis="x" cdkDrag>
-        <div class="example-container">
-          <h2>To do</h2>
-
-          <div cdkDropList [cdkDropListData]="rows"  class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let todo of rows" cdkDragBoundary=".example-boundary" cdkDrag>{{todo.name}}
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="example-box1" cdkDragBoundary=".example-boundary" cdkDragLockAxis="x" cdkDrag>
-
-        <div class="example-container">
-          <h2>Done</h2>
-
-          <div cdkDropList [cdkDropListData]="rows1"  class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" cdkDragBoundary=".example-boundary" *ngFor="let done of rows1" cdkDrag>{{done.name}}
-            </div>
-          </div>
-        </div>
+<mat-grid-list cols="1" rowHeight="2:1">
+  <mat-grid-tile>
+    <div class="example-container">
+      <h3>Coluna de Habilidade</h3>
+    
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="skills"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of skillsColumns" cdkDrag>{{item.name}}</div>
       </div>
     </div>
-  </div>
-  <div>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <pre>{{rows | json}}</pre>
-        </div>
-        <div class="col-6">
-          <pre>{{rows1 | json}}</pre>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <ngx-datatable
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div>
+      <h3>A Tabela</h3>
+
+      <ngx-datatable
           class="material"
-          [rows]="rows"
+          [rows]="dadosTabela"
+          [loadingIndicator]="loadingIndicator"
           [columns]="columns"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          rowHeight="auto"
+          [reorderable]="reorderable"
+          [swapColumns]="swapColumns"
+          [targetMarkerTemplate]="targetMarkerTemplate"
         >
         </ngx-datatable>
-        </div>
-        <div class="col-6">
-          <ngx-datatable
-          class="material"
-          [rows]="rows1"
-          [columns]="columns1"
-          
-        >
-        </ngx-datatable>
-        </div>
-       
-      </div>
+        <ng-template #targetMarkerTemplate let-class="class">
+          <div [ngClass]="class">
+            <div class="datatable-icon-down"></div>
+            <div class="datatable-icon-up"></div>
+          </div>
+        </ng-template>
     </div>
-   
-  </div>
-</body>
+  </mat-grid-tile>
+</mat-grid-list>
