@@ -1,16 +1,20 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
+import { ColumnMode } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css',
+]
 })
 export class AppComponent {
+  
   title = 'app';
   loadingIndicator = true;
   reorderable = true;
   swapColumns = false;
+  ColumnMode = ColumnMode;
 
   dadosTabela = [
     { name: 'Austin', gender: 'Male', company: 'Swimlane', },

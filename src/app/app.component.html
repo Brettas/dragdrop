@@ -16,26 +16,18 @@
   <mat-grid-tile>
     <div>
       <h3>A Tabela</h3>
-
-      <ngx-datatable
-          class="material"
-          [rows]="dadosTabela"
-          [loadingIndicator]="loadingIndicator"
-          [columns]="columns"
-          [headerHeight]="50"
-          [footerHeight]="50"
-          rowHeight="auto"
-          [reorderable]="reorderable"
-          [swapColumns]="swapColumns"
-          [targetMarkerTemplate]="targetMarkerTemplate"
-        >
-        </ngx-datatable>
-        <ng-template #targetMarkerTemplate let-class="class">
-          <div [ngClass]="class">
-            <div class="datatable-icon-down"></div>
-            <div class="datatable-icon-up"></div>
-          </div>
-        </ng-template>
-    </div>
+      <div>
+        <ngx-datatable
+      class="bootstrap"
+      [rows]="dadosTabela"
+      [columns]="columns"
+      [columnMode]="ColumnMode"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [reorderable]="reorderable"
+      >
+    </ngx-datatable>
+      </div>
+  </div>
   </mat-grid-tile>
 </mat-grid-list>
