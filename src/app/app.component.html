@@ -1,30 +1,35 @@
 <div class="container">
 
   <div class="row" cdkDropListGroup>
-
+    <!-- cdkDropListGroup -->
     <div class="col-6">
 
       <div class="example-container">
 
         <h3>Colunas Da Tabela</h3>
-        <!--cdkDropListData - Permite fazer a ação do drag drop.
-            cdkDropListOrientation - Exibe os item na horizontal.-->
-        <div 
-        cdkDropList 
-        [cdkDropListData]="columns" 
-        cdkDropListOrientation="horizontal" 
+        <!--
+          cdkDropListData - Permite fazer a ação do drag drop entre os arrays.
+          cdkDropListOrientation - Exibe os item na horizontal.
+          cdkDragLockAxis - Mexer os item somente no eixo x
+        -->
+        <div
+        cdkDropList
+        [cdkDropListData]="columns"
+        cdkDropListOrientation="horizontal"
         cdkDragLockAxis = "x"
-        class="example-list" 
+        class="example-list"
         (cdkDropListDropped)="drop($event)">
+        
+                <!-- cdkDrag - Torna os item arrastaveis -->
+              <div
 
-              <div 
-                  class="example-box" 
-                  *ngFor="let coluna of columns" 
+                  class="example-box"
+                  *ngFor="let coluna of columns"
                   cdkDrag>{{coluna.name}}
               </div>
 
         </div>
-        
+
       </div>
 
     </div>
@@ -35,16 +40,16 @@
 
         <h3>Colunas Livres</h3>
 
-        <div cdkDropList 
-        [cdkDropListData]="colunasLivres" 
-        cdkDropListOrientation="horizontal" 
+        <div cdkDropList
+        [cdkDropListData]="colunasLivres"
+        cdkDropListOrientation="horizontal"
         cdkDragLockAxis = "x"
-        class="example-list" 
+        class="example-list"
         (cdkDropListDropped)="drop($event)">
 
-              <div 
-                  class="example-box" 
-                  *ngFor="let coluna of colunasLivres" 
+              <div
+                  class="example-box"
+                  *ngFor="let coluna of colunasLivres"
                   cdkDrag>
                   {{coluna.name}}
               </div>
@@ -68,13 +73,13 @@
         <div>
 
           <ngx-datatable 
-                  class="bootstrap" 
-                  [rows]="dadosTabela" 
-                  [columns]="columns" 
-                  [columnMode]="ColumnMode"
-                  [headerHeight]="50" 
-                  [footerHeight]="50" 
-                  [reorderable]="reorderable">
+              class="bootstrap" 
+              [rows]="dadosTabela" 
+              [columns]="columns" 
+              [columnMode]="ColumnMode"
+              [headerHeight]="50" 
+              [footerHeight]="50" 
+              [reorderable]="reorderable">
           </ngx-datatable>
 
         </div>

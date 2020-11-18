@@ -36,6 +36,7 @@ export class AppComponent {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+      this.ColumnMode;
       this.dadosTabela = [...this.dadosTabela];
       this.columns = [...this.columns];
       this.colunasLivres = [...this.colunasLivres];
@@ -46,6 +47,7 @@ export class AppComponent {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+        this.ColumnMode;
       this.dadosTabela = [...this.dadosTabela];
       this.columns = [...this.columns];
       this.colunasLivres = [...this.colunasLivres];
