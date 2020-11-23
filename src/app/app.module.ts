@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTableModule} from '@angular/material/table';
 import { CdktabelaComponent } from './cdktabela/cdktabela.component';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { CdktabelaComponent } from './cdktabela/cdktabela.component';
     BrowserAnimationsModule,
     MatSliderModule,
     DragDropModule,
+    MatSortModule,
     NgbModule, 
     NgxDatatableModule,
     MatTableModule,
