@@ -8,11 +8,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AppComponent } from './app.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table';
+import { CdktabelaComponent } from './cdktabela/cdktabela.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    CdktabelaComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,6 +24,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     DragDropModule,
     NgbModule, 
     NgxDatatableModule,
+    MatTableModule,
     MatGridListModule,
     
   ],
