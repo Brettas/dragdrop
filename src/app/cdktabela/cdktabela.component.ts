@@ -1,4 +1,4 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -9,11 +9,27 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./cdktabela.component.css']
 })
 export class CdktabelaComponent implements AfterViewInit {
-  columns: string[] = ['gender', 'name', 'company', 'skills', 'state'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  columns: string[] = ['gender', 'name', 'company',  ];
+
+  coluna: string[] = ['state', 'skills',];
+  
+  dataSource = new MatTableDataSource(dadosTabela);
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    } else {
+
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
   }
 
   @ViewChild(MatSort) sort: MatSort;
@@ -31,7 +47,7 @@ export interface PeriodicElement {
   state: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
+const dadosTabela: PeriodicElement[] = [
   { name: 'Pedro', gender: 'M', company: 'Apple', skills: 'Python', state: 'RJ' },
   { name: 'Bruno', gender: 'M', company: 'KFC', skills: ' TS', state: 'SP' },
   { name: 'Lorena', gender: 'F', company: 'Coca-Cola', skills: 'JS', state: 'BA' },

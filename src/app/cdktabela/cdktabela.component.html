@@ -1,36 +1,95 @@
-<table mat-table
-       [dataSource]="dataSource" 
-       cdkDropList
-       matSort
-       class="mat-elevation-z8"
-       cdkDropListOrientation="horizontal"
-       (cdkDropListDropped)="drop($event)">
+<div class="container">
+  <div class="row" cdkDropListGroup>
+    <!-- cdkDropListGroup -->
+    <div class="col-6">
 
-  <ng-container matColumnDef="gender">
-    <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header > Gender </th>
-    <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
-  </ng-container>
+      <div class="example-container">
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
+        <h3>Colunas Da Tabela</h3>
+        <!--
+          cdkDropListData - Permite fazer a ação do drag drop entre os arrays.
+          cdkDropListOrientation - Exibe os item na horizontal.
+          cdkDragLockAxis - Mexer os item somente no eixo x
+        -->
+        <div cdkDropList [cdkDropListData]="columns" cdkDropListOrientation="horizontal" class="example-list"
+          (cdkDropListDropped)="drop($event)">
 
-  <ng-container matColumnDef="skills">
-    <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header> Skills </th>
-    <td mat-cell *matCellDef="let element"> {{element.skills}} </td>
-  </ng-container>
+          <!-- cdkDrag - Torna os item arrastaveis -->
+          <div class="example-box" *ngFor="let items of columns" cdkDrag>{{items | titlecase  }}
+          </div>
 
-  <ng-container matColumnDef="state">
-    <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header> State </th>
-    <td mat-cell *matCellDef="let element"> {{element.state}} </td>
-  </ng-container>
+        </div>
 
-  <ng-container matColumnDef="company">
-    <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header> State </th>
-    <td mat-cell *matCellDef="let element"> {{element.company}} </td>
-  </ng-container>
+      </div>
 
-  <tr mat-header-row *matHeaderRowDef="columns"></tr>
-  <tr mat-row *matRowDef="let row; columns: columns;"></tr>
-</table>
+    </div>
+
+    <div class="col-6">
+
+      <div class="example-container">
+
+        <h3>Colunas Livres</h3>
+
+        <div cdkDropList [cdkDropListData]="coluna" cdkDropListOrientation="horizontal" class="example-list"
+          (cdkDropListDropped)="drop($event)">
+
+          <div class="example-box" *ngFor="let item of coluna" cdkDrag>
+            {{item | titlecase  }}
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <h3>A Tabela</h3>
+
+      <div class="col-12">
+        
+        <table 
+        mat-table 
+        [dataSource]="dataSource" 
+        cdkDropList 
+        cdkDropListGroup 
+        [cdkDropListData]="columns" 
+        matSort
+        cdkDropListOrientation="horizontal" 
+        (cdkDropListDropped)="drop($event)">
+
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header> Gender </th>
+            <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="skills">
+            <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header> Skills </th>
+            <td mat-cell *matCellDef="let element"> {{element.skills}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="state">
+            <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header> State </th>
+            <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="company">
+            <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header> Company </th>
+            <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columns"></tr>
+          <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
