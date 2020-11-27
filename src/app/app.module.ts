@@ -11,6 +11,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTableModule} from '@angular/material/table';
 import { CdktabelaComponent } from './cdktabela/cdktabela.component';
 import { MatSortModule } from '@angular/material/sort';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
+import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.component';
 
 
 @NgModule({
@@ -24,13 +26,14 @@ import { MatSortModule } from '@angular/material/sort';
     MatSliderModule,
     DragDropModule,
     MatSortModule,
+    MatPaginatorModule,
     NgbModule, 
     NgxDatatableModule,
     MatTableModule,
     MatGridListModule,
     
   ],
-  providers: [],
+  providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginatorComponent}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
