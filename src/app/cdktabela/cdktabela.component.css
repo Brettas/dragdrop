@@ -62,5 +62,17 @@ table {
 .row{
     padding: 10px;
 }
+
+.selected {
+  background-color:rgba(0, 0, 255, 0.596)!important;
+}
+
+.mat-row:nth-child(even){
+    background-color: #d8dddb;
+}
+
+.mat-row:nth-child(odd){
+    background-color:#ffffff;
+}
  
   

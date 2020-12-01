@@ -13,6 +13,8 @@ import { CdktabelaComponent } from './cdktabela/cdktabela.component';
 import { MatSortModule } from '@angular/material/sort';
 import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -27,8 +29,10 @@ import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.co
     DragDropModule,
     MatSortModule,
     MatPaginatorModule,
+    MatDividerModule,
     NgbModule, 
     NgxDatatableModule,
+    MatListModule,
     MatTableModule,
     MatGridListModule,
     

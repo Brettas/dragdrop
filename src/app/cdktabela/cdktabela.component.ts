@@ -12,8 +12,11 @@ import { MatTableDataSource } from '@angular/material/table';
 export class CdktabelaComponent implements AfterViewInit  {
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
   @ViewChild(MatSort) sort: MatSort;
   
+  selectedRow;
+
   columns: string[] = ['gender', 'name', 'company',  ];
 
   coluna: string[] = ['state', 'skills','id',];
