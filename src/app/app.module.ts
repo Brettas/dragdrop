@@ -15,6 +15,8 @@ import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator'
 import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import {MatListModule} from '@angular/material/list';
     MatSliderModule,
     DragDropModule,
     MatSortModule,
+    MatIconModule,
     MatPaginatorModule,
     MatDividerModule,
     NgbModule, 

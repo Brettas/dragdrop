@@ -1,5 +1,6 @@
 table {
   width: 100%;
+  cursor: pointer;
 }
 
 .example-list {
@@ -59,16 +60,15 @@ table {
   text-align: center;
 }
 
-.row{
-    padding: 10px;
-}
 
 .selected {
-  background-color:rgba(0, 0, 255, 0.596)!important;
+  
+  background-color:rgba(113, 247, 153, 0.692)!important;
+  
 }
 
 .mat-row:nth-child(even){
-    background-color: #d8dddb;
+    background-color: #eff3f1;
 }
 
 .mat-row:nth-child(odd){

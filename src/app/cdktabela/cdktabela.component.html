@@ -7,10 +7,10 @@
 
         <h3>Colunas Livres</h3>
 
-        <div cdkDropList [cdkDropListData]="coluna" cdkDropListOrientation="horizontal" class="example-list"
+        <div cdkDropList [cdkDropListData]="colunasLivres" cdkDropListOrientation="horizontal" class="example-list"
           (cdkDropListDropped)="drop($event)">
 
-          <div class="example-box" *ngFor="let item of coluna" cdkDrag>
+          <div class="example-box" *ngFor="let item of colunasLivres" cdkDrag>
             {{item | titlecase  }}
           </div>
 
@@ -32,7 +32,7 @@
           [dataSource]="dataSource" 
           cdkDropList 
           cdkDropListGroup 
-          [cdkDropListData]="columns"
+          [cdkDropListData]="colunasDaTabela"
           matSort
           cdkDropListOrientation="horizontal" 
           (cdkDropListDropped)="drop($event)">
@@ -68,20 +68,18 @@
               <td mat-cell *matCellDef="let element"> {{element.id}} </td>
             </ng-container>
   
-            <tr mat-header-row *matHeaderRowDef="columns"></tr>
-            <tr mat-row *matRowDef="let row; columns: columns;"
-            (click)="selectedRow = selectedRow === row ? null : row" [ngClass]="{ 'selected': row === selectedRow }"></tr>
+            <tr mat-header-row *matHeaderRowDef="colunasDaTabela"></tr>
+            <tr mat-row *matRowDef="let row; columns: colunasDaTabela;"
+            (click)="linhaSelecionada = linhaSelecionada === row.id ? null : row.id" [ngClass]="{ 'selected': row.id === linhaSelecionada }"></tr>
           </table>
         </div>
+        {{linhaSelecionada}}
         
         <mat-paginator [length]="100"
-        [pageSize]="5"
+        [pageSize]="6"
         [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
         
-        <mat-list>
-          <mat-list-item>Selecionados: {{selectedRow}} </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
+        
       </div>
 
     </div>

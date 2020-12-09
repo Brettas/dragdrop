@@ -15,14 +15,38 @@ export class CdktabelaComponent implements AfterViewInit  {
 
   @ViewChild(MatSort) sort: MatSort;
   
-  selectedRow;
+  linhaSelecionada : Set<number> = new Set<number>();
 
-  columns: string[] = ['gender', 'name', 'company',  ];
+  colunasDaTabela: string[] = ['gender', 'name', 'company',  ];
 
-  coluna: string[] = ['state', 'skills','id',];
+  colunasLivres: string[] = ['state', 'skills','id',];
+
+  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
 
   
   dataSource = new MatTableDataSource(dadosTabela);
+  allRows: PeriodicElement [] = [];
+
+  
+  onRowClick(id: number) {
+    if (this.linhaSelecionada.has(id)) {
+      this.linhaSelecionada.delete(id);
+    } else {
+      this.linhaSelecionada.add(id);
+    }
+  }
+  
+
+  rowIsSelected(id: number) {
+    return this.linhaSelecionada.has(id);
+  }
+
+  getSelectedRows(id: number) {
+    return this.allRows.filter(x => this.linhaSelecionada.has(x.id));
+    
+    
+  }
+
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -68,6 +92,7 @@ const dadosTabela: PeriodicElement[] = [
   { name: 'Lucas', gender: 'M', company: 'B2W', skills: 'Java', state: 'CE', id: 8  },
   { name: 'Diego', gender: 'M', company: 'ESPN', skills: 'NBA', state: 'RJ',  id: 9 },
   { name: 'Renata', gender: 'F', company: 'Bg', skills: 'C#', state: 'AM', id: 10 },
-  { name: 'Isadora', gender: 'F', company: 'CA', skills: 'Java', state: 'CE', id: 11 }
+  { name: 'Isadora', gender: 'F', company: 'CA', skills: 'Java', state: 'CE', id: 11 },
+  { name: 'Camila', gender: 'F', company: 'AA', skills: '.Net', state: 'RN', id: 12 }
 ];
 
