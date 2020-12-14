@@ -15,6 +15,7 @@ import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator'
 import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
 
 
@@ -38,6 +39,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatListModule,
     MatTableModule,
     MatGridListModule,
+    MatCheckboxModule
     
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginatorComponent}],

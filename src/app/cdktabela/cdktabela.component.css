@@ -56,15 +56,6 @@ table {
 
 .mat-header-cell{
   color: rgb(32, 31, 31);
-  font-size: medium;
-  text-align: center;
-}
-
-
-.selected {
-  
-  background-color:rgba(113, 247, 153, 0.692)!important;
-  
 }
 
 .mat-row:nth-child(even){
@@ -74,5 +65,7 @@ table {
 .mat-row:nth-child(odd){
     background-color:#ffffff;
 }
- 
-  
+
+select{
+  background-color: springgreen;
+}

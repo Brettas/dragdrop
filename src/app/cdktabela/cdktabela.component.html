@@ -33,9 +33,27 @@
           cdkDropList 
           cdkDropListGroup 
           [cdkDropListData]="colunasDaTabela"
+          class="mat-elevation-z8"
           matSort
           cdkDropListOrientation="horizontal" 
           (cdkDropListDropped)="drop($event)">
+
+          <ng-container matColumnDef="select">
+            <th mat-header-cell cdkDrag *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            [aria-label]="checkboxLabel()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
   
             <ng-container matColumnDef="gender">
               <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header> Gender </th>
@@ -69,15 +87,23 @@
             </ng-container>
   
             <tr mat-header-row *matHeaderRowDef="colunasDaTabela"></tr>
-            <tr mat-row *matRowDef="let row; columns: colunasDaTabela;"
-            (click)="linhaSelecionada = linhaSelecionada === row.id ? null : row.id" [ngClass]="{ 'selected': row.id === linhaSelecionada }"></tr>
+            <tr mat-row multiple *matRowDef="let row; columns: colunasDaTabela;"
+            (click)="selection.toggle(row)"
+            ></tr>
           </table>
         </div>
-        {{linhaSelecionada}}
-        
         <mat-paginator [length]="100"
         [pageSize]="6"
         [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
+        
+        <mat-list>
+          <mat-list-item>
+            <h5>Items Selecionados:{{ numeroselecionados }} </h5></mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Item 2</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Item 3</mat-list-item>
+        </mat-list>
         
         
       </div>

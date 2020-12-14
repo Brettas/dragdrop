@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
@@ -14,39 +15,43 @@ export class CdktabelaComponent implements AfterViewInit  {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
-  
-  linhaSelecionada : Set<number> = new Set<number>();
 
-  colunasDaTabela: string[] = ['gender', 'name', 'company',  ];
+  multiple: boolean = true;
+  
+  selection = new SelectionModel<PeriodicElement>(true, []);
+
+  colunasDaTabela: string[] = ['select','gender', 'name', 'company',  ];
 
   colunasLivres: string[] = ['state', 'skills','id',];
 
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+  activatedRow = null;
+  highlightedRows = [];
 
-  
   dataSource = new MatTableDataSource(dadosTabela);
-  allRows: PeriodicElement [] = [];
 
-  
-  onRowClick(id: number) {
-    if (this.linhaSelecionada.has(id)) {
-      this.linhaSelecionada.delete(id);
-    } else {
-      this.linhaSelecionada.add(id);
-    }
+numeroselecionados: number; 
+ 
+
+isAllSelected() {
+  const numSelected = this.selection.selected.length;
+  const numRows = this.dataSource.data.length;
+  this.numeroselecionados = numSelected
+  return numSelected === numRows;
+}
+
+masterToggle() {
+  this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+}
+
+/** The label for the checkbox on the passed row */
+checkboxLabel(row?: PeriodicElement): string {
+  if (!row) {
+    return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
   }
-  
-
-  rowIsSelected(id: number) {
-    return this.linhaSelecionada.has(id);
-  }
-
-  getSelectedRows(id: number) {
-    return this.allRows.filter(x => this.linhaSelecionada.has(x.id));
-    
-    
-  }
-
+  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+}
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -87,6 +92,13 @@ const dadosTabela: PeriodicElement[] = [
   { name: 'Lorena', gender: 'F', company: 'Coca-Cola', skills: 'JS', state: 'BA',  id: 3 },
   { name: 'Leandro', gender: 'M', company: 'Burger King', skills: 'C#', state: 'AM', id: 4  },
   { name: 'Amanda', gender: 'F', company: 'UX', skills: 'Java', state: 'CE', id: 5 },
+  { name: 'Camila', gender: 'F', company: 'Shell', skills: 'JS', state: 'BA',  id: 6 },
+  { name: 'Thais', gender: 'F', company: 'Globo', skills: 'C#', state: 'AM', id: 7   },
+  { name: 'Lucas', gender: 'M', company: 'B2W', skills: 'Java', state: 'CE', id: 8  },
+  { name: 'Diego', gender: 'M', company: 'ESPN', skills: 'NBA', state: 'RJ',  id: 9 },
+  { name: 'Renata', gender: 'F', company: 'Bg', skills: 'C#', state: 'AM', id: 10 },
+  { name: 'Isadora', gender: 'F', company: 'CA', skills: 'Java', state: 'CE', id: 11 },
+  { name: 'Camila', gender: 'F', company: 'AA', skills: '.Net', state: 'RN', id: 12 },
   { name: 'Camila', gender: 'F', company: 'Shell', skills: 'JS', state: 'BA',  id: 6 },
   { name: 'Thais', gender: 'F', company: 'Globo', skills: 'C#', state: 'AM', id: 7   },
   { name: 'Lucas', gender: 'M', company: 'B2W', skills: 'Java', state: 'CE', id: 8  },
